@@ -5,17 +5,15 @@ const options = {
     method: 'GET'
 }
 const puppeteer = require("puppeteer");
-const { processHTML } = require('./process');
 
-const getData = async function getData() {
+const getHTML = async function getData(url) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto("https://www.youtube.com/feed/trending");
-    const data = await page.content();
+    await page.goto(url);
+    const html = await page.content();
     await browser.close();
-    processHTML(data);
+    return html;
 }
 module.exports = {
-    getData
+    getHTML
 }
-getData();

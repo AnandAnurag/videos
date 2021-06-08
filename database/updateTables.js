@@ -5,13 +5,8 @@ const updateChannels = function (channels = {}) {
     connection.connect();
     for (let cid in channels) {
         const channel = channels[cid];
-        const cols = Object.keys(channel).join(",");
-        const values = Object.values(channel).map(v => sanitize(v)).join(",");
-        const updateCols = ["thumbnail", "description", "name", "subscribers"].map(k => `${k}=${sanitize(channel[k])}`).join(",")
-        const command = `INSERT INTO channels (${cols})
-    VALUES (${values})
-    ON DUPLICATE KEY UPDATE ${updateCols}`;
-        connection.query(command, function (error, results, fields) {
+        const command = `INSERT INTO channels SET ?  ON DUPLICATE KEY UPDATE ?`;
+        connection.query(command, [channels[cid], channels[cid]], function (error, results, fields) {
             if (error)
                 console.log(command)
         });
@@ -22,21 +17,13 @@ const updateVideosList = function (trending = []) {
     let connection = conn();
     connection.connect();
     for (let video of trending) {
-        const cols = Object.keys(video).join(",");
-        const values = Object.values(video).map(v => sanitize(v)).join(",");
-        const updateCols = ["views", "likes", "dislikes", "thumbnail", "description", "title"].map(k => `${k}=${sanitize(video[k])}`).join(",")
-        const command = `INSERT INTO trending (${cols})
-        VALUES (${values})
-        ON DUPLICATE KEY UPDATE ${updateCols}`;
-        connection.query(command, function (error, results, fields) {
+        const command = `INSERT INTO trending SET ? ON DUPLICATE KEY UPDATE ?`;
+        connection.query(command, [video, video], function (error, results, fields) {
             if (error)
                 console.log(error);
         });
     }
     connection.end();
-}
-function sanitize(s) {
-    return s !== null ? `"${s.replace(/"/g, '\\"')}"` : 'NULL';
 }
 module.exports = {
     updateVideosList,

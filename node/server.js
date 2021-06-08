@@ -3,7 +3,7 @@ const app = express()
 const PORT = 8000;
 const { getTrendingVideos } = require('../database/getTrending');
 const { getVideo } = require('../database/getVideo');
-const { getData } = require('./scraper');
+const { processTrendingVideos } = require('./process');
 
 app.use(function (req, res, next) {
     console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
@@ -14,7 +14,7 @@ app.get('/videos', function (req, res) {
     getTrendingVideos(req, res);
 });
 app.get('/videos/refresh', function (req, res) {
-    getData().then(() => res.send('{"message": "Refreshed Sucessfuly"}'));
+    processTrendingVideos().then(() => res.send('{"message": "Refreshed Sucessfuly"}'));
 });
 app.get('/videos/:id', function (req, res) {
     getVideo(req, res);
