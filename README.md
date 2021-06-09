@@ -10,12 +10,18 @@ This application scraps latest trending videos from [Youtube's trending page](ht
 * Maria DB Server
 * PHP 7.2
 * NodeJS 16.2
+* HTML
+* CSS
+* JavaScript
 
 ### PHP
 
 Renders web page on server-side. Two routes exposed:
 * `/videos`: To view of the list of Trending Videos
 * `/videos/:vid`: To watch the video and go through its details
+
+
+### JavaScript
 
 #### AJAX
 
