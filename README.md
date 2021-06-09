@@ -24,9 +24,9 @@ Renders web page on server-side. Two routes exposed:
 
 ### Node JS
 
-HOST: https://ec2-18-117-225-232.us-east-2.compute.amazonaws.com/videos/
+**HOST**: https://ec2-18-117-225-232.us-east-2.compute.amazonaws.com/videos/
 
-API exposed on PORT `localhost:8000`:
+**API** exposed on PORT `localhost:8000`:
 * `/videos`: List trending videos as JSON
 * `/videos/:vid`: `vid` is the video of id used by Youtube. It returns invidiual video JSON
 * `/videos/refresh`: Refetch the trending videos and refresh the DB by merging new entries to old ones
@@ -41,7 +41,7 @@ API exposed on PORT `localhost:8000`:
 
 #### Dev Dependecies
 
-* `"nodemon": "^2.0.7"`` Autorestart of Node Server
+* `"nodemon": "^2.0.7"` Autorestart of Node Server
 
 
 ### MySQL
