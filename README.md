@@ -1,6 +1,6 @@
 # Trending Videos
 
-This application scraps latest trending videos from [Youtube's trending page(https://www.youtube.com/feed/trending)] and displays it for user.
+This application scraps latest trending videos from [Youtube's trending page](https://www.youtube.com/feed/trending) and displays it for user.
 
 ## Tech Stack
 
